@@ -84,5 +84,7 @@ class ProjectAgent:
         torch.save(self.network.state_dict(), path)
 
     def load(self):
-        path = "./model_dir/dqn_best.pth"
-        self.network.load_state_dict(torch.load(path, map_location=torch.device('cpu'))['model_state_dict'])
+        import os
+        script_dir = os.path.dirname(__file__)
+        model_path = os.path.join(script_dir, "model_dir", "dqn_best.pth")
+        self.network.load_state_dict(torch.load(model_path, map_location=torch.device('cpu'))['model_state_dict'])
